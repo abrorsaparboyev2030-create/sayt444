@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azizbek Ismoilov Portfolio</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- AOS Animation -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none; /* barcha underline olib tashlandi */
+        }
+
+        a::after,
+        a::before {
+            content: none !important; /* pseudo-elementlar chiziqlarini yo'q qiladi */
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: black;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Video Background */
+        #bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.45;
+            z-index: -1;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 12px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 999;
+            background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(183, 75, 75, 0.3);
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            color: #b74b4b;
+            font-weight: 800;
+            letter-spacing: 2px;
+            transition: 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+            text-shadow: 0 0 10px #b74b4b;
+        }
+
+        nav a {
+            color: white;
+            margin-left: 32px;
+            font-size: 1.4rem;
+            transition: 0.4s;
+        }
+
+        nav a:hover {
+            color: #b74b4b;
+            text-shadow: 0 0 8px #b74b4b;
+        }
+
+        /* Sections */
+        section {
+            padding: 110px 8% 80px;
+            min-height: 100vh;
+        }
+
+        .section-title {
+            font-size: 3.8rem;
+            font-weight: 800;
+            color: #b74b4b;
+            text-align: center;
+            margin-bottom: 55px;
+            text-shadow: 0 0 10px #b74b4b;
+        }
+
+        /* Home */
+        .home {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4rem;
+        }
+
+        .home-img img {
+            width: 360px;
+            border-radius: 50%;
+            box-shadow: 0 0 35px #b74b4b;
+            transition: 0.4s;
+        }
+
+        .home-img img:hover {
+            transform: scale(1.05) rotate(1deg);
+            box-shadow: 0 0 45px #e26a6a;
+        }
+
+        .home-content h1 {
+            font-size: 5rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .home-content h3 {
+            margin-top: 10px;
+            font-size: 2.6rem;
+            letter-spacing: 1px;
+            transition: all 0.5s ease;
+        }
+
+        span {
+            color: #b74b4b;
+            text-shadow: 0 0 12px #b74b4b;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 46px;
+            height: 46px;
+            margin-right: 12px;
+            margin-top: 20px;
+            border-radius: 50%;
+            border: 2px solid #b74b4b;
+            color: #b74b4b;
+            font-size: 1.8rem;
+            transition: 0.4s;
+        }
+
+        .social-icons a:hover {
+            background: #b74b4b;
+            color: black;
+            transform: scale(1.2) translateY(-3px);
+            box-shadow: 0 0 25px #b74b4b;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 35px;
+            border-radius: 30px;
+            border: 2px solid #b74b4b;
+            color: #b74b4b;
+            font-size: 1.4rem;
+            font-weight: 700;
+            transition: 0.4s;
+        }
+
+        .btn:hover {
+            background: #b74b4b;
+            color: black;
+            transform: scale(1.1);
+            box-shadow: 0 0 20px #b74b4b;
+        }
+
+        /* Boxes */
+        .box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 22px 25px;
+            border-radius: 14px;
+            border: 1px solid rgba(183, 75, 75, 0.4);
+            backdrop-filter: blur(5px);
+            transition: 0.4s;
+            margin-bottom: 18px;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .box:hover {
+            transform: translateY(-7px) scale(1.02);
+            box-shadow: 0 0 25px rgba(183, 75, 75, 0.7);
+            border-color: #b74b4b;
+        }
+
+        /* Responsive */
+        @media(max-width:900px) {
+            .home {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .home-img img {
+                width: 60vw;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Video Background -->
+    <video autoplay loop muted id="bg-video">
+        <source src="image/170133-842720326.mp4" type="video/mp4">
+    </video>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">Azizbek</div>
+        <nav>
+            <a href="#home" class="active">Home</a>
+            <a href="#services">Services</a>
+            <a href="#skills">Skills</a>
+            <a href="#education">Education</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section class="home" id="home">
+        <div class="home-img" data-aos="fade-right" data-aos-duration="1100">
+            <img src="image.png" alt="">
+        </div>
+
+        <div class="home-content" data-aos="fade-left" data-aos-duration="1100">
+            <h1>Hi, I'm <span>Azizbek</span></h1>
+            <h3>I’m a <span id="typing"></span></h3>
+
+            <p style="margin-top:10px; font-size:1.4rem;">
+                I create modern, clean, animated and stunning websites.
+            </p>
+
+            <div class="social-icons">
+                <!-- GitHub -->
+                <a href="https://github.com/abrorsaparboyev2030-create" target="_blank" title="GitHub">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+            
+                <!-- Telegram -->
+                <a href="https://t.me/@Ismoilov_14" target="_blank" title="Telegram">
+                    <i class="fa-brands fa-telegram"></i>
+                </a>
+            
+                <!-- Instagram -->
+                <a href="https://instagram.com/ismoilov___fx" target="_blank" title="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+            </div>
+            
+
+            <a href="#" class="btn">Hire Me</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2 class="section-title" data-aos="zoom-in">Services</h2>
+        <div class="box" data-aos="fade-up">🔧 Web Development</div>
+        <div class="box" data-aos="fade-up">🎨 UI/UX Frontend Design</div>
+        <div class="box" data-aos="fade-up">⚙ Backend Development</div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="section-title" data-aos="zoom-in">Skills</h2>
+        <div class="box" data-aos="fade-up">HTML / CSS / JavaScript</div>
+        <div class="box" data-aos="fade-up">React / Vue / Tailwind</div>
+        <div class="box" data-aos="fade-up">Node.js / Express</div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <h2 class="section-title" data-aos="zoom-in">Education</h2>
+        <div class="box" data-aos="fade-up">Bachelor in Computer Science</div>
+        <div class="box" data-aos="fade-up">Frontend Developer Courses</div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2 class="section-title" data-aos="zoom-in">Experience</h2>
+        <div class="box" data-aos="fade-up">2 Years Web Development</div>
+        <div class="box" data-aos="fade-up">1 Year Freelance</div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title" data-aos="zoom-in">Contact</h2>
+        <div class="box" data-aos="fade-up">Email: azizbek@example.com</div>
+        <div class="box" data-aos="fade-up">Phone: +998 XX XXX XX XX</div>
+    </section>
+
+    <!-- AOS Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 900, once: false });
+
+        /* Typing Animation with smooth fade effect */
+        const words = ["Web Developer", "Designer", "Programmer", "Freelancer"];
+        let i = 0;
+        const typingText = document.getElementById("typing");
+
+        function changeWord() {
+            typingText.style.opacity = 0;
+            setTimeout(() => {
+                typingText.textContent = words[i];
+                typingText.style.opacity = 1;
+                i = (i + 1) % words.length;
+            }, 300);
+        }
+
+        changeWord();
+        setInterval(changeWord, 2000);
+    </script>
+
+</body>
+
+</html>
